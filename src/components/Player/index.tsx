@@ -22,12 +22,15 @@ export default function Player() {
     },
   ];
 
-  // const playlist = [{ src: iney }, { src: chiralium }];
-
   const [currentTrack, setTrackIndex] = useState(0);
-  const [loopMusic, setLoopMusic] = useState(false);
 
-  // handleClickPrevious
+  const handleClickPreview = () => {
+    console.log("click preview");
+    // console.log(playlist.findLastIndex(music => music.id > playlist.length - 1))
+    setTrackIndex((currentTrack) =>
+      currentTrack > 0 ? currentTrack - 1 : playlist.length - 1,
+    );
+  };
 
   const handleClickNext = () => {
     console.log("click next");
@@ -52,13 +55,13 @@ export default function Player() {
         autoPlay={true}
         volume={0.5}
         src={playlist[currentTrack].src}
-        showSkipControls
+        showSkipControls={true}
+        onClickPrevious={handleClickPreview}
         onClickNext={handleClickNext}
         onEnded={handleEnd}
         onError={() => {
           console.log("play error");
         }}
-        loop={loopMusic}
         customAdditionalControls={[
           <a
             href={playlist[currentTrack].src}
@@ -66,17 +69,9 @@ export default function Player() {
             className="download-button-link"
             title={`${playlist[currentTrack].title} - ${playlist[currentTrack].author}`}
             key="download"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginLeft: "10px",
-            }}
           >
-            <span>Hello</span>
+            <span>Download</span>
           </a>,
-          <button onClick={() => setLoopMusic(!loopMusic)}>
-            {loopMusic ? "looped" : "not looped"}
-          </button>,
         ]}
         // Try other props!
       />
