@@ -1,0 +1,36 @@
+/* Container background and box shadow */
+.rhap_container {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Time text color (current time & duration) */
+.rhap_time {
+  color: #a0a0a0;
+}
+
+/* Progress bar background */
+.rhap_progress-bar, .rhap_volume-bar {
+  background-color: #444444;
+}
+
+.rhap_download-progress{
+  background-color: #858585;
+}
+
+/* Filled progress bar color */
+.rhap_progress-filled {
+  background-color: #ffffff;
+  /* Spotify green */
+}
+
+/* Progress bar indicator handle */
+.rhap_progress-indicator, .rhap_volume-indicator {
+  background-color: #ffffff;
+}
+
+/* Main action control icons (Play, Pause, Skip) */
+/* .rhap_controls-section .rhap_main-controls button {
+  color: #ffffff;
+} */

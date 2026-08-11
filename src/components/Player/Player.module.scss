@@ -1,0 +1,48 @@
+@keyframes circle-to-square {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.player-container {
+  position: absolute;
+  bottom: 10px;
+  left: 8px;
+  right: 8px;
+  background-color: #393939;
+  border-radius: 8px;
+
+  animation-name: circle-to-square;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+
+  .player-music {
+    padding: 10px 10px 5px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    img {
+      width: 70px;
+    }
+
+    .music-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      .title {
+        font-size: 25px;
+        color: #e4e4e4;
+      }
+
+      .author {
+        color: #a0a0a0;
+        font-size: 15px;
+      }
+    }
+  }
+}

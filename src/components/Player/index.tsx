@@ -1,28 +1,53 @@
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
+import "./playerStyle.css";
+import styles from "./Player.module.scss";
+
 import iney from "../../assets/INEY.mp3";
 import chiralium from "../../assets/chiralium.mp3";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import DownloadIcon from "@mui/icons-material/Download";
+import PlayCircleIcon from "@mui/icons-material/PlayCircle";
+import PauseCircleIcon from "@mui/icons-material/PauseCircle";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
+import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
+import Tooltip from "@mui/material/Tooltip";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
+
+import RepeatIcon from "@mui/icons-material/Repeat";
+import RepeatOneIcon from "@mui/icons-material/RepeatOne";
 
 export default function Player() {
   const playlist = [
     {
       id: 1,
-      src: iney,
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsrRbCFXdQVAsVvsVsPhOQiARjLPks_L5v5ByofhsF7m_ru6Qf9sHwA6RK&s=10",
-      title: "ИНЕЙ",
-      author: "Ножевые ранения",
-    },
-    {
-      id: 2,
       src: chiralium,
       img: "https://i.scdn.co/image/ab67616d0000b273442e51d795b053b4a9642fd9",
       title: "Chiralium",
       author: "Ludvig Forssell",
     },
+    {
+      id: 2,
+      src: iney,
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsrRbCFXdQVAsVvsVsPhOQiARjLPks_L5v5ByofhsF7m_ru6Qf9sHwA6RK&s=10",
+      title: "ИНЕЙ",
+      author: "Ножевые ранения",
+    },
   ];
 
   const [currentTrack, setTrackIndex] = useState(0);
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timeout);
+  });
 
   const handleClickPreview = () => {
     console.log("click preview");
@@ -47,18 +72,24 @@ export default function Player() {
   };
 
   return (
-    <div className="playerContainer">
-      <img src={playlist[currentTrack].img} width={"100px"} alt="INEY" />
-      <span>{playlist[currentTrack].title}</span>
-      <span>{playlist[currentTrack].author}</span>
+    <div className={styles["player-container"]}>
+      <div className={styles["player-music"]}>
+        <img src={playlist[currentTrack].img} alt="INEY" />
+        <div className={styles["music-info"]}>
+          <span className={styles["title"]}>{playlist[currentTrack].title}</span>
+          <span className={styles["author"]}>{playlist[currentTrack].author}</span>
+        </div>
+      </div>
       <AudioPlayer
         autoPlay={true}
         volume={0.5}
+        // loop={true}
         src={playlist[currentTrack].src}
         showSkipControls={true}
         onClickPrevious={handleClickPreview}
         onClickNext={handleClickNext}
         onEnded={handleEnd}
+        showJumpControls={false}
         onError={() => {
           console.log("play error");
         }}
@@ -70,9 +101,27 @@ export default function Player() {
             title={`${playlist[currentTrack].title} - ${playlist[currentTrack].author}`}
             key="download"
           >
-            <span>Download</span>
+            <Tooltip title="Download music file">
+              <IconButton aria-label="download" size="large">
+                <DownloadIcon fontSize="inherit" sx={{ color: "#fafafa" }} />
+              </IconButton>
+            </Tooltip>
           </a>,
         ]}
+        customIcons={{
+          play: <PlayCircleIcon fontSize="inherit" sx={{ color: "#fafafa" }} />,
+          pause: (
+            <PauseCircleIcon fontSize="inherit" sx={{ color: "#fafafa" }} />
+          ),
+          previous: (
+            <SkipPreviousIcon fontSize="inherit" sx={{ color: "#fafafa" }} />
+          ),
+          next: <SkipNextIcon fontSize="inherit" sx={{ color: "#fafafa" }} />,
+          volume: <VolumeUpIcon fontSize="inherit" sx={{ color: "#fafafa" }} />,
+          volumeMute: (
+            <VolumeOffIcon fontSize="inherit" sx={{ color: "#fafafa" }} />
+          ),
+        }}
         // Try other props!
       />
     </div>
