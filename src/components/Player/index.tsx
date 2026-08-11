@@ -6,7 +6,6 @@ import styles from "./Player.module.scss";
 import iney from "../../assets/INEY.mp3";
 import chiralium from "../../assets/chiralium.mp3";
 import { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DownloadIcon from "@mui/icons-material/Download";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
@@ -16,9 +15,7 @@ import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import Tooltip from "@mui/material/Tooltip";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
-
-import RepeatIcon from "@mui/icons-material/Repeat";
-import RepeatOneIcon from "@mui/icons-material/RepeatOne";
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function Player() {
   const playlist = [
@@ -39,19 +36,17 @@ export default function Player() {
   ];
 
   const [currentTrack, setTrackIndex] = useState(0);
-
-  const [loading, setLoading] = useState(false);
+  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+  const isMobile = windowWidth < 768;
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    return () => clearTimeout(timeout);
-  });
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleClickPreview = () => {
     console.log("click preview");
-    // console.log(playlist.findLastIndex(music => music.id > playlist.length - 1))
     setTrackIndex((currentTrack) =>
       currentTrack > 0 ? currentTrack - 1 : playlist.length - 1,
     );
@@ -76,14 +71,20 @@ export default function Player() {
       <div className={styles["player-music"]}>
         <img src={playlist[currentTrack].img} alt="INEY" />
         <div className={styles["music-info"]}>
-          <span className={styles["title"]}>{playlist[currentTrack].title}</span>
-          <span className={styles["author"]}>{playlist[currentTrack].author}</span>
+          <span className={styles["title"]}>
+            {playlist[currentTrack].title}
+          </span>
+          <span className={styles["author"]}>
+            {playlist[currentTrack].author}
+          </span>
         </div>
+        <IconButton aria-label="close" size="large">
+          <CloseIcon fontSize="inherit" sx={{ color: "#fafafa" }} />
+        </IconButton>
       </div>
       <AudioPlayer
-        autoPlay={true}
-        volume={0.5}
-        // loop={true}
+        autoPlay={false}
+        volume={isMobile ? 1 : 0.5}
         src={playlist[currentTrack].src}
         showSkipControls={true}
         onClickPrevious={handleClickPreview}

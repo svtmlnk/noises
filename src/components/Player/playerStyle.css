@@ -11,26 +11,33 @@
 }
 
 /* Progress bar background */
-.rhap_progress-bar, .rhap_volume-bar {
+.rhap_progress-bar,
+.rhap_volume-bar {
   background-color: #444444;
 }
 
-.rhap_download-progress{
+.rhap_download-progress {
   background-color: #858585;
 }
 
 /* Filled progress bar color */
 .rhap_progress-filled {
   background-color: #ffffff;
-  /* Spotify green */
 }
 
 /* Progress bar indicator handle */
-.rhap_progress-indicator, .rhap_volume-indicator {
+.rhap_progress-indicator,
+.rhap_volume-indicator {
   background-color: #ffffff;
 }
 
-/* Main action control icons (Play, Pause, Skip) */
-/* .rhap_controls-section .rhap_main-controls button {
-  color: #ffffff;
-} */
+
+@media screen and (max-width: 768px) {
+  .rhap_volume-controls {
+    display: none;
+  }
+
+  .rhap_stacked .rhap_controls-section {
+    margin-top: 0;
+  }
+}

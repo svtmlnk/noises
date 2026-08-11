@@ -27,6 +27,11 @@
 
     img {
       width: 70px;
+      border-radius: 3px;
+
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
     }
 
     .music-info {
@@ -37,12 +42,35 @@
       .title {
         font-size: 25px;
         color: #e4e4e4;
+
+        @media screen and (max-width: 768px) {
+          font-size: 20px;
+        }
       }
 
       .author {
         color: #a0a0a0;
         font-size: 15px;
+
+        @media screen and (max-width: 768px) {
+          font-size: 10px;
+        }
       }
+    }
+
+    button{
+      position: absolute;
+      right: 15px;
+    }
+
+    @media screen and (max-width: 768px) {
+      justify-content: center;
+      text-align: center;
     }
   }
 }
+
+// 320 px — минимум для мобильных устройств.
+// 768 x 1024 px — стандарт для планшетов.
+// 1366 x 768 px — частый размер ноутбуков.
+// 1920 x 1080 px — फुल HD десктопы.
