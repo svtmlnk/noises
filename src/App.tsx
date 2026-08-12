@@ -13,10 +13,20 @@ function App() {
         <div className="content">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/favorite" element={<ErrorPage />} />
+            <Route path="/musics" element={<ErrorPage />} />
+            <Route path="/users" element={<ErrorPage />} />
+            <Route path="/account" element={<ErrorPage />} />
+            <Route path="/settings" element={<ErrorPage />} />
+            <Route path="/auth" element={<ErrorPage />} />
+            <Route path="/reg" element={<ErrorPage />} />
+            <Route path="/admin" element={<ErrorPage />} />
+            {/* <Route path="/musics/:id" element={<ErrorPage />} /> */}
+            {/* <Route path="/users/:id" element={<ErrorPage />} /> */}
             <Route path="*" element={<ErrorPage />} />
           </Routes>
+          <Player />
         </div>
-        {/* <Player /> */}
       </div>
     </>
   );

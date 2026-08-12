@@ -20,8 +20,8 @@ export default function SideBar() {
           </IconButton>
         </Tooltip>
       </Link>
-      <Link to={"/404"}>
-        <Tooltip title="Error page">
+      <Link to={"/favorite"}>
+        <Tooltip title="Favorite page">
           <IconButton aria-label="download" size="large">
             <FavoriteIcon fontSize="inherit" sx={{ color: "#727272" }} />
           </IconButton>
@@ -32,15 +32,15 @@ export default function SideBar() {
           <AlbumIcon fontSize="inherit" sx={{ color: "#727272" }} />
         </IconButton>
       </Tooltip>
-      <Link to={"/404"}>
-        <Tooltip title="Error page">
+      <Link to={"/musics"}>
+        <Tooltip title="Musics page">
           <IconButton aria-label="download" size="large">
             <MusicNoteIcon fontSize="inherit" sx={{ color: "#727272" }} />
           </IconButton>
         </Tooltip>
       </Link>
-      <Link to={"/404"}>
-        <Tooltip title="Error page">
+      <Link to={"/users"}>
+        <Tooltip title="Users page">
           <IconButton aria-label="download" size="large">
             <PersonIcon fontSize="inherit" sx={{ color: "#727272" }} />
           </IconButton>

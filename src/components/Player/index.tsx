@@ -16,7 +16,7 @@ import Tooltip from "@mui/material/Tooltip";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export default function Player() {
   const playlist = [
