@@ -1,6 +1,6 @@
 /* Container background and box shadow */
 .rhap_container {
-  background-color: #1a1a1a;
+  background-color: #101010;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }

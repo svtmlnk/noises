@@ -12,7 +12,7 @@
   bottom: 10px;
   left: 8px;
   right: 8px;
-  background-color: #393939;
+  background-color: #222222;
   border-radius: 8px;
 
   animation-name: circle-to-square;
@@ -20,7 +20,7 @@
   animation-timing-function: ease;
 
   .player-music {
-    padding: 10px 10px 5px;
+    padding: 10px;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -58,7 +58,17 @@
       }
     }
 
-    button{
+    #close {
+      display: none;
+
+      @media screen and (max-width: 768px) {
+        display: flex;
+        position: absolute;
+        left: 15px;
+      }
+    }
+
+    #remove {
       position: absolute;
       right: 15px;
     }

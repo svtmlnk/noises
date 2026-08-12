@@ -16,6 +16,7 @@ import Tooltip from "@mui/material/Tooltip";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import CloseIcon from "@mui/icons-material/Close";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export default function Player() {
   const playlist = [
@@ -30,7 +31,7 @@ export default function Player() {
       id: 2,
       src: iney,
       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsrRbCFXdQVAsVvsVsPhOQiARjLPks_L5v5ByofhsF7m_ru6Qf9sHwA6RK&s=10",
-      title: "ИНЕЙ",
+      title: "NНΞЙ",
       author: "Ножевые ранения",
     },
   ];
@@ -70,6 +71,9 @@ export default function Player() {
     <div className={styles["player-container"]}>
       <div className={styles["player-music"]}>
         <img src={playlist[currentTrack].img} alt="INEY" />
+        <IconButton aria-label="close" size="large" id={styles["close"]}>
+          <KeyboardArrowDownIcon fontSize="inherit" sx={{ color: "#fafafa" }} />
+        </IconButton>
         <div className={styles["music-info"]}>
           <span className={styles["title"]}>
             {playlist[currentTrack].title}
@@ -78,7 +82,7 @@ export default function Player() {
             {playlist[currentTrack].author}
           </span>
         </div>
-        <IconButton aria-label="close" size="large">
+        <IconButton aria-label="close" size="large" id={styles["remove"]}>
           <CloseIcon fontSize="inherit" sx={{ color: "#fafafa" }} />
         </IconButton>
       </div>

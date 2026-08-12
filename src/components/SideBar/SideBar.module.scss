@@ -1,0 +1,47 @@
+.sidenav {
+  // width: 150px;
+  background-color: #161616;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  img {
+    width: 50px;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  a,
+  button {
+    text-decoration: none;
+    color: #818181;
+
+    &:hover {
+      background-color: #ffffff1a;
+      border-radius: 100%;
+    }
+  }
+
+  #player {
+    display: none;
+
+    @media screen and (max-width: 768px) {
+      display: flex;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    flex-direction: unset;
+    justify-content: space-around;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 15px;
+  }
+}
