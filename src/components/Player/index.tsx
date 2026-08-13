@@ -16,7 +16,7 @@ import Tooltip from "@mui/material/Tooltip";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { usePlayer } from "../../context/playerContext";
 
 export default function Player() {
   const playlist = [
@@ -36,7 +36,13 @@ export default function Player() {
     },
   ];
 
+  // playerContext.tsx
+  const { showPlayer, setShowPlayer } = usePlayer();
+
+  // id текущего трека
   const [currentTrack, setTrackIndex] = useState(0);
+
+  // отслеживание ширины окна браузера
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
   const isMobile = windowWidth < 768;
 
@@ -46,6 +52,7 @@ export default function Player() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // ручное управление музыкой: включить предыдущую музыку
   const handleClickPreview = () => {
     console.log("click preview");
     setTrackIndex((currentTrack) =>
@@ -53,6 +60,7 @@ export default function Player() {
     );
   };
 
+  // ручное управление музыкой: включить следующую музыку
   const handleClickNext = () => {
     console.log("click next");
     setTrackIndex((currentTrack) =>
@@ -60,6 +68,7 @@ export default function Player() {
     );
   };
 
+  // включить следующую музыку после завершения текущей
   const handleEnd = () => {
     console.log("end");
     setTrackIndex((currentTrack) =>
@@ -68,12 +77,9 @@ export default function Player() {
   };
 
   return (
-    <div className={styles["player-container"]}>
+    <div className={styles["player-container"]} style={{display: showPlayer ? "block" : "none"}}>
       <div className={styles["player-music"]}>
         <img src={playlist[currentTrack].img} alt="INEY" />
-        <IconButton aria-label="close" size="large" id={styles["close"]}>
-          <KeyboardArrowDownIcon fontSize="inherit" sx={{ color: "#fafafa" }} />
-        </IconButton>
         <div className={styles["music-info"]}>
           <span className={styles["title"]}>
             {playlist[currentTrack].title}
@@ -82,7 +88,12 @@ export default function Player() {
             {playlist[currentTrack].author}
           </span>
         </div>
-        <IconButton aria-label="close" size="large" id={styles["remove"]}>
+        <IconButton
+          aria-label="close"
+          size="large"
+          id={styles["remove"]}
+          onClick={() => setShowPlayer(false)}
+        >
           <CloseIcon fontSize="inherit" sx={{ color: "#fafafa" }} />
         </IconButton>
       </div>
@@ -99,6 +110,7 @@ export default function Player() {
           console.log("play error");
         }}
         customAdditionalControls={[
+          // кнопка скачивания музыки в виде тега (a)
           <a
             href={playlist[currentTrack].src}
             download={`${playlist[currentTrack].title}.mp3`}

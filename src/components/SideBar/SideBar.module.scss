@@ -18,19 +18,6 @@
   button {
     text-decoration: none;
     color: #818181;
-
-    &:hover {
-      background-color: #ffffff1a;
-      border-radius: 100%;
-    }
-  }
-
-  #player {
-    display: none;
-
-    @media screen and (max-width: 768px) {
-      display: flex;
-    }
   }
 
   @media screen and (max-width: 768px) {

@@ -1,9 +1,18 @@
-@keyframes circle-to-square {
+@keyframes show-player {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes hide-player {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 
@@ -15,7 +24,7 @@
   background-color: #222222;
   border-radius: 8px;
 
-  animation-name: circle-to-square;
+  animation-name: show-player;
   animation-duration: 0.5s;
   animation-timing-function: ease;
 
@@ -28,10 +37,6 @@
     img {
       width: 70px;
       border-radius: 3px;
-
-      @media screen and (max-width: 768px) {
-        display: none;
-      }
     }
 
     .music-info {
@@ -58,24 +63,14 @@
       }
     }
 
-    #close {
-      display: none;
-
-      @media screen and (max-width: 768px) {
-        display: flex;
-        position: absolute;
-        left: 15px;
-      }
-    }
-
     #remove {
       position: absolute;
       right: 15px;
     }
 
     @media screen and (max-width: 768px) {
-      justify-content: center;
-      text-align: center;
+      justify-content: left;
+      text-align: left;
     }
   }
 }

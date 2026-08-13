@@ -8,8 +8,12 @@ import PersonIcon from "@mui/icons-material/Person";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import AlbumIcon from "@mui/icons-material/Album";
 import logo from "/favicon.svg?url";
+import { usePlayer } from "../../context/playerContext";
 
 export default function SideBar() {
+  // playerContext.tsx
+  const { showPlayer, setShowPlayer } = usePlayer();
+
   return (
     <div className={styles["sidenav"]}>
       <img src={logo} alt="logo" />
@@ -28,7 +32,7 @@ export default function SideBar() {
         </Tooltip>
       </Link>
       <Tooltip title="Player">
-        <IconButton aria-label="download" size="large" id={styles["player"]}>
+        <IconButton aria-label="download" size="large" onClick={() => setShowPlayer(!showPlayer)}>
           <AlbumIcon fontSize="inherit" sx={{ color: "#727272" }} />
         </IconButton>
       </Tooltip>
