@@ -5,7 +5,7 @@ import styles from "./Player.module.scss";
 
 import iney from "../../assets/INEY.mp3";
 import chiralium from "../../assets/chiralium.mp3";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import DownloadIcon from "@mui/icons-material/Download";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
@@ -17,6 +17,8 @@ import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import CloseIcon from "@mui/icons-material/Close";
 import { usePlayer } from "../../context/playerContext";
+
+import { animate, spring } from "animejs";
 
 export default function Player() {
   const playlist = [
@@ -38,6 +40,21 @@ export default function Player() {
 
   // playerContext.tsx
   const { showPlayer, setShowPlayer } = usePlayer();
+
+  const playerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!playerRef.current) return;
+    
+    animate(playerRef.current, {
+      scale: [
+        { to: 1.25, ease: "inOut(3)", duration: 200 },
+        { to: 1, ease: spring({ bounce: 0.7 }) },
+      ],
+      loop: true,
+      loopDelay: 250,
+    });
+  }, []);
 
   // id текущего трека
   const [currentTrack, setTrackIndex] = useState(0);
@@ -77,7 +94,11 @@ export default function Player() {
   };
 
   return (
-    <div className={styles["player-container"]} style={{display: showPlayer ? "block" : "none"}}>
+    <div
+      className={styles["player-container"]}
+      ref={playerRef}
+      style={{ display: showPlayer ? "block" : "none" }}
+    >
       <div className={styles["player-music"]}>
         <img src={playlist[currentTrack].img} alt="INEY" />
         <div className={styles["music-info"]}>
