@@ -9,10 +9,49 @@ import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import AlbumIcon from "@mui/icons-material/Album";
 import logo from "/favicon.svg?url";
 import { usePlayer } from "../../context/playerContext";
+import { animate } from "animejs";
 
 export default function SideBar() {
   // playerContext.tsx
-  const { showPlayer, setShowPlayer } = usePlayer();
+  const { showPlayer, setShowPlayer, playerRef } = usePlayer();
+
+  // функция по отображению и скрытию плеера
+  const showHidePlayer = () => {
+    if (!playerRef.current) return;
+
+    // Скрытие
+    if (showPlayer) {
+      animate(playerRef.current, {
+        y: "10px",
+        opacity: [1, 0],
+        duration: 200,
+      });
+
+      setTimeout(() => {
+        setShowPlayer(false);
+      }, 200);
+
+      console.log("hide");
+    }
+
+    // Отображение
+    else {
+      setShowPlayer(true);
+
+      // Даём React время отрисовать элемент
+      setTimeout(() => {
+        if (!playerRef.current) return;
+
+        animate(playerRef.current, {
+          y: "-10px",
+          opacity: [0, 1],
+          duration: 200,
+        });
+      }, 0);
+
+      console.log("show");
+    }
+  };
 
   return (
     <div className={styles["sidenav"]}>
@@ -32,7 +71,7 @@ export default function SideBar() {
         </Tooltip>
       </Link>
       <Tooltip title="Player">
-        <IconButton aria-label="download" size="large" onClick={() => setShowPlayer(!showPlayer)}>
+        <IconButton aria-label="download" size="large" onClick={showHidePlayer}>
           <AlbumIcon fontSize="inherit" sx={{ color: "#727272" }} />
         </IconButton>
       </Tooltip>

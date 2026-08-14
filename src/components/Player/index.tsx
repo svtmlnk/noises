@@ -18,7 +18,7 @@ import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import CloseIcon from "@mui/icons-material/Close";
 import { usePlayer } from "../../context/playerContext";
 
-import { animate, spring } from "animejs";
+import { animate } from "animejs";
 
 export default function Player() {
   const playlist = [
@@ -39,22 +39,26 @@ export default function Player() {
   ];
 
   // playerContext.tsx
-  const { showPlayer, setShowPlayer } = usePlayer();
+  const { showPlayer, setShowPlayer, playerRef } = usePlayer();
 
-  const playerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
+  // функция по скрытию плеера
+  const hidePlayer = () => {
     if (!playerRef.current) return;
-    
+
     animate(playerRef.current, {
-      scale: [
-        { to: 1.25, ease: "inOut(3)", duration: 200 },
-        { to: 1, ease: spring({ bounce: 0.7 }) },
-      ],
-      loop: true,
-      loopDelay: 250,
+      y: "10px",
+      opacity: [1, 0],
+      duration: 200,
     });
-  }, []);
+
+    setTimeout(() => {
+      setShowPlayer(false);
+      console.log("hidden")
+    }, 200);
+
+    console.log(showPlayer)
+    console.log("hide")
+  };
 
   // id текущего трека
   const [currentTrack, setTrackIndex] = useState(0);
@@ -94,11 +98,7 @@ export default function Player() {
   };
 
   return (
-    <div
-      className={styles["player-container"]}
-      ref={playerRef}
-      style={{ display: showPlayer ? "block" : "none" }}
-    >
+    <div className={styles["player-container"]} ref={playerRef} style={{display: showPlayer ? "block" : "none"}}>
       <div className={styles["player-music"]}>
         <img src={playlist[currentTrack].img} alt="INEY" />
         <div className={styles["music-info"]}>
@@ -113,7 +113,7 @@ export default function Player() {
           aria-label="close"
           size="large"
           id={styles["remove"]}
-          onClick={() => setShowPlayer(false)}
+          onClick={hidePlayer}
         >
           <CloseIcon fontSize="inherit" sx={{ color: "#fafafa" }} />
         </IconButton>

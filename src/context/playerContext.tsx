@@ -1,11 +1,12 @@
 // использование Context
 
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useRef, useState, type ReactNode, type RefObject } from "react";
 
 // описываем структуру данных, которые будут доступны в context
 type PlayerContextType = {
   showPlayer: boolean;
   setShowPlayer: (show: boolean) => void;
+  playerRef: RefObject<HTMLDivElement | null>;
 };
 
 // Создаём context
@@ -16,11 +17,13 @@ const PlayerContext = createContext<PlayerContextType | undefined>(undefined);
 // Здесь хранятся данные, которые должны быть доступны всему приложению. children — это все компоненты, которые будут обёрнуты в Provider.
 export const PlayerProvider = ({ children }: { children: ReactNode }) => {
   const [showPlayer, setShowPlayer] = useState(true);
+  const playerRef = useRef<HTMLDivElement>(null);
   // showPlayer используется для отображение плеера, a setShowPlayer для изменения значения showPlayer
 
   // value - объект, который будет доступен через useContext().
   return (
-    <PlayerContext.Provider value={{ showPlayer, setShowPlayer }}>
+    // <PlayerContext.Provider value={{ showPlayer, setShowPlayer, toShow, setToShow }}>
+    <PlayerContext.Provider value={{ showPlayer, setShowPlayer, playerRef }}>
       {children}
     </PlayerContext.Provider>
   );
