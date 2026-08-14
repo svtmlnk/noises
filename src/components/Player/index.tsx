@@ -5,7 +5,7 @@ import styles from "./Player.module.scss";
 
 import iney from "../../assets/INEY.mp3";
 import chiralium from "../../assets/chiralium.mp3";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import DownloadIcon from "@mui/icons-material/Download";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
