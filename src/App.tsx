@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import Player from "./components/Player";
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";

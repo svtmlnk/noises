@@ -119,7 +119,7 @@ export default function Player() {
         </IconButton>
       </div>
       <AudioPlayer
-        autoPlay={true}
+        autoPlay={false}
         volume={isMobile ? 1 : 0.5}
         src={playlist[currentTrack].src}
         showSkipControls={true}

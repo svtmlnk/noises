@@ -1,0 +1,19 @@
+.error-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 90vh;
+
+    .emoji{
+        font-size: 100px;
+        margin-bottom: 30px;
+    }
+
+    .text{
+        font-size: 32px;
+        margin-bottom: 50px;
+    }
+}
+

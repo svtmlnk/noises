@@ -1,0 +1,49 @@
+.music-item {
+  position: relative;
+  background-color: #212121;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+
+  img {
+    width: 70px;
+    height: 70px;
+    border-radius: 3px;
+  }
+
+  .title-and-author {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    .title {
+      font-size: 25px;
+      color: #e4e4e4;
+
+      @media screen and (max-width: 768px) {
+        font-size: 20px;
+      }
+    }
+    .author {
+      color: #a0a0a0;
+      font-size: 15px;
+
+      @media screen and (max-width: 768px) {
+        font-size: 10px;
+      }
+    }
+  }
+
+  .music-item-options{
+    display: flex;
+    position: absolute;
+    right: 15px;
+  }
+
+  &:hover{
+    background-color: #2f2f2f;
+  }
+}
