@@ -28,12 +28,7 @@ body {
 }
 
 .overlay {
-  position: fixed;
-  inset: 0;
-
-  background: rgba(0, 0, 0, 0.6);
-
-  z-index: 999;
+  display: none;
 }
 
 a:focus,
@@ -51,5 +46,16 @@ a {
 @media screen and (max-width: 768px) {
   .content {
     padding: 30px 15px;
+  }
+
+  .overlay {
+    display: flex;
+    
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.6);
+
+    z-index: 999;
   }
 }
