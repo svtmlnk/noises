@@ -31,6 +31,11 @@
   background-color: #ffffff;
 }
 
+.rhap_progress-container {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
 
 @media screen and (max-width: 768px) {
   .rhap_volume-controls {
