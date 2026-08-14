@@ -4,8 +4,11 @@ import Player from "./components/Player";
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import SideBar from "./components/SideBar";
+import { usePlayer } from "./context/playerContext";
 
 function App() {
+  const { showPlayer } = usePlayer();
+
   return (
     <>
       <div className="container">
@@ -25,6 +28,8 @@ function App() {
             {/* <Route path="/users/:id" element={<ErrorPage />} /> */}
             <Route path="*" element={<ErrorPage />} />
           </Routes>
+          
+          {showPlayer && <div className="overlay" />}
           <Player />
         </div>
       </div>

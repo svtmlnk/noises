@@ -16,7 +16,7 @@ const PlayerContext = createContext<PlayerContextType | undefined>(undefined);
 // Главный Provider.
 // Здесь хранятся данные, которые должны быть доступны всему приложению. children — это все компоненты, которые будут обёрнуты в Provider.
 export const PlayerProvider = ({ children }: { children: ReactNode }) => {
-  const [showPlayer, setShowPlayer] = useState(true);
+  const [showPlayer, setShowPlayer] = useState(false);
   const playerRef = useRef<HTMLDivElement>(null);
   // showPlayer используется для отображение плеера, a setShowPlayer для изменения значения showPlayer
 
