@@ -2,10 +2,12 @@ import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import "./playerStyle.css";
 import styles from "./Player.module.scss";
-
-import iney from "../../assets/INEY.mp3";
-import chiralium from "../../assets/chiralium.mp3";
 import { useEffect, useState } from "react";
+import { usePlayer } from "../../context/playerContext";
+
+import iney from "/music/INEY.mp3?url";
+import chiralium from "/music/chiralium.mp3?url";
+
 import IconButton from "@mui/material/IconButton";
 import DownloadIcon from "@mui/icons-material/Download";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
@@ -16,7 +18,6 @@ import Tooltip from "@mui/material/Tooltip";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import CloseIcon from "@mui/icons-material/Close";
-import { usePlayer } from "../../context/playerContext";
 
 import { animate } from "animejs";
 
