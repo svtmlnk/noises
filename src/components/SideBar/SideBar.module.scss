@@ -1,10 +1,10 @@
 .sidenav {
-  // width: 150px;
   background-color: #161616;
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  z-index: 2;
 
   img {
     width: 50px;

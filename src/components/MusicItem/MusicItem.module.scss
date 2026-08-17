@@ -8,10 +8,18 @@
   gap: 15px;
   padding: 15px;
 
-  img {
+  .img {
     width: 70px;
     height: 70px;
     border-radius: 3px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    @media screen and (max-width: 768px) {
+      width: 60px;
+      height: 60px;
+    }
   }
 
   .title-and-author {
@@ -37,13 +45,17 @@
     }
   }
 
-  .music-item-options{
+  .music-item-options {
     display: flex;
     position: absolute;
     right: 15px;
   }
 
-  &:hover{
+  &:hover {
     background-color: #2f2f2f;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 10px;
   }
 }

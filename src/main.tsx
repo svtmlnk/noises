@@ -4,13 +4,17 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App.tsx";
 import { PlayerProvider } from "./context/playerContext.tsx";
+import { Provider } from "react-redux";
+import { store } from "./app/store.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
-      <PlayerProvider>
-        <App />
-      </PlayerProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <PlayerProvider>
+          <App />
+        </PlayerProvider>
+      </BrowserRouter>
+    </Provider>
   </StrictMode>,
 );

@@ -5,9 +5,6 @@ import styles from "./Player.module.scss";
 import { useEffect, useState } from "react";
 import { usePlayer } from "../../context/playerContext";
 
-import iney from "/music/INEY.mp3?url";
-import chiralium from "/music/chiralium.mp3?url";
-
 import IconButton from "@mui/material/IconButton";
 import DownloadIcon from "@mui/icons-material/Download";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
@@ -19,50 +16,17 @@ import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import CloseIcon from "@mui/icons-material/Close";
 
-import { animate } from "animejs";
+import { useAppSelector } from "../../app/hooks";
+import { selectMusic } from "../../features/music/musicSlice";
 
 export default function Player() {
-  const playlist = [
-    {
-      id: 1,
-      src: chiralium,
-      img: "https://i.scdn.co/image/ab67616d0000b273442e51d795b053b4a9642fd9",
-      title: "Chiralium",
-      author: "Ludvig Forssell",
-    },
-    {
-      id: 2,
-      src: iney,
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsrRbCFXdQVAsVvsVsPhOQiARjLPks_L5v5ByofhsF7m_ru6Qf9sHwA6RK&s=10",
-      title: "NНΞЙ",
-      author: "Ножевые ранения",
-    },
-  ];
+  const playlist = useAppSelector(selectMusic);
 
   // playerContext.tsx
-  const { showPlayer, setShowPlayer, playerRef } = usePlayer();
+  const { showPlayer, hidePlayer, currentTrack, setTrackIndex, playerRef } = usePlayer();
 
-  // функция по скрытию плеера
-  const hidePlayer = () => {
-    if (!playerRef.current) return;
-
-    animate(playerRef.current, {
-      y: "10px",
-      opacity: [1, 0],
-      duration: 200,
-    });
-
-    setTimeout(() => {
-      setShowPlayer(false);
-      console.log("hidden")
-    }, 200);
-
-    console.log(showPlayer)
-    console.log("hide")
-  };
-
-  // id текущего трека
-  const [currentTrack, setTrackIndex] = useState(0);
+  // индекс текущего трека
+  // const [currentTrack, setTrackIndex] = useState(0);
 
   // отслеживание ширины окна браузера
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
