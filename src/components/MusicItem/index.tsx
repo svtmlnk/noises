@@ -21,7 +21,7 @@ export default function MusicItem({ id, title, author, img }: MusicInfo) {
         <span className={styles["title"]}>{title}</span>
         <span className={styles["author"]}>{author}</span>
       </div>
-      <div className={styles["music-item-options"]}>
+      {/* <div className={styles["music-item-options"]}>
         <IconButton
           aria-label="close"
           size="large"
@@ -40,7 +40,7 @@ export default function MusicItem({ id, title, author, img }: MusicInfo) {
         >
           <DeleteIcon fontSize="inherit" sx={{ color: "#727272" }} />
         </IconButton>
-      </div>
+      </div> */}
     </div>
   );
 }

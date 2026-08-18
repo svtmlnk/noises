@@ -1,5 +1,5 @@
-import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import ButtonElem from "../../components/UI/ButtonElem";
 
 export default function ErrorPage() {
 
@@ -9,7 +9,7 @@ export default function ErrorPage() {
     <div className="error-page">
       <span className="emoji">(╥﹏╥)</span>
       <span className="text">I don't know this page</span>
-      <Button variant="contained" sx={{bgcolor: "#d9d9d9", borderRadius: "100px", color: "#080808"}} onClick={() => navigate('/')}>Return to Home Page</Button>
+      <ButtonElem title="Return to Home Page" func={() => navigate('/')} />
     </div>
   );
 }

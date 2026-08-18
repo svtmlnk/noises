@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import SideBar from "./components/SideBar";
 import { usePlayer } from "./context/playerContext";
+import ModalWindow from "./components/ModalWindow";
 
 function App() {
   const { showPlayer } = usePlayer();
@@ -28,7 +29,7 @@ function App() {
             {/* <Route path="/users/:id" element={<ErrorPage />} /> */}
             <Route path="*" element={<ErrorPage />} />
           </Routes>
-          
+          <ModalWindow />
           {showPlayer && <div className="overlay" />}
           <Player />
         </div>

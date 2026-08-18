@@ -46,8 +46,17 @@ export const PlayerProvider = ({ children }: { children: ReactNode }) => {
     showPlayerFunc();
   };
 
-  // функция скрытия плеера
-  const hidePlayer = () => {
+  const animateShow = () => {
+    if (!playerRef.current) return;
+
+    animate(playerRef.current, {
+      y: "-10px",
+      opacity: [0, 1],
+      duration: 200,
+    });
+  };
+
+  const animateHide = () => {
     if (!playerRef.current) return;
 
     animate(playerRef.current, {
@@ -55,69 +64,32 @@ export const PlayerProvider = ({ children }: { children: ReactNode }) => {
       opacity: [1, 0],
       duration: 200,
     });
+  };
+
+  // функция скрытия плеера
+  const hidePlayer = () => {
+    animateHide();
 
     setTimeout(() => {
       setShowPlayer(false);
-      console.log("hidden");
     }, 200);
-
-    console.log(showPlayer);
-    console.log("hide");
   };
 
   // функция отображения плеера
   const showPlayerFunc = () => {
     setShowPlayer(true);
 
-    // Даём React время отрисовать элемент
     setTimeout(() => {
-      if (!playerRef.current) return;
-
-      animate(playerRef.current, {
-        y: "-10px",
-        opacity: [0, 1],
-        duration: 200,
-      });
+      animateShow();
     }, 0);
-
-    console.log("show");
   };
 
   // функция по отображению и скрытию плеера
   const showHidePlayer = () => {
-    if (!playerRef.current) return;
-
-    // Скрытие
     if (showPlayer) {
-      animate(playerRef.current, {
-        y: "10px",
-        opacity: [1, 0],
-        duration: 200,
-      });
-
-      setTimeout(() => {
-        setShowPlayer(false);
-      }, 200);
-
-      console.log("hide");
-    }
-
-    // Отображение
-    else {
-      setShowPlayer(true);
-
-      // Даём React время отрисовать элемент
-      setTimeout(() => {
-        if (!playerRef.current) return;
-
-        animate(playerRef.current, {
-          y: "-10px",
-          opacity: [0, 1],
-          duration: 200,
-        });
-      }, 0);
-
-      console.log("show");
+      hidePlayer();
+    } else {
+      showPlayerFunc();
     }
   };
 
