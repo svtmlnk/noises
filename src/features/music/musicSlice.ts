@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
 
 import iney from "/music/INEY.mp3?url";
@@ -8,15 +8,23 @@ import chiralium from "/music/chiralium.mp3?url";
 
 // типизация массива данных
 export type MusicInfo = {
-    id: number;
-    src: string;
-    img: string;
-    title: string;
-    author: string;
+  id: number;
+  src: string;
+  img: string;
+  title: string;
+  author: string;
 };
 
 export interface MusicState {
   music_arr: MusicInfo[];
+}
+
+interface MusicFile {
+  id: number;
+  src: string;
+  img: string;
+  title: string;
+  author: string;
 }
 
 // список заготовленной музыки
@@ -45,9 +53,9 @@ export const musicSlice = createSlice({
   initialState,
 
   reducers: {
-    add: (state) => {
-      //   state.music_arr.push("Hello");
-      console.log("Hello");
+    add: (state, action: PayloadAction<MusicFile>) => {
+      state.music_arr.push(action.payload);
+      console.log(action.payload);
     },
 
     destroy: (state) => {

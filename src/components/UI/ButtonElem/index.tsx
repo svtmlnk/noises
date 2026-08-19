@@ -1,11 +1,13 @@
 import Button from "@mui/material/Button";
 import { styled } from '@mui/material/styles';
+import { useModal } from "../../../context/modalContext";
 
 interface ButtonElemProps {
   title: string;
   startIcon?: string;
   func?: any;
   uploading?: boolean;
+  disabled?: boolean;
 }
 
 const style = {
@@ -31,15 +33,19 @@ export default function ButtonElem({
   startIcon,
   func,
   uploading,
+  disabled
 }: ButtonElemProps) {
+
+  const { chooseFile } = useModal();
+
   return (
-    <Button component="label" variant="contained" startIcon={startIcon} sx={style} onClick={func}>
+    <Button component="label" variant="contained" startIcon={startIcon} sx={style} onClick={func} disabled={disabled}>
       {title}
       {uploading && (
         <VisuallyHiddenInput
           type="file"
           accept=".mp3"
-          onChange={(event) => console.log(event.target.files)}
+          onChange={(event) => chooseFile(event.target.files)}
           multiple
         />
       )}

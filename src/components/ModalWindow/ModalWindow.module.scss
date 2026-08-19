@@ -1,0 +1,14 @@
+.modal-window{
+    position: fixed;
+    left: 20%;
+    right: 20%;
+    top: 20%;
+    bottom: 20%;
+
+    max-width: calc(100vw - 8px * 2);
+    margin-inline: auto;
+
+    background-color: #161616;
+    border-radius: 10px;
+    padding: 15px;
+}
